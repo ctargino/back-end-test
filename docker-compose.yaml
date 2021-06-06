@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: node:latest
+    container_name: nodejs
+    restart: always
+    env_file: .env
+    ports:
+      - '${APP_PORT}:3333'
+    volumes:
+      - .:/usr/app
+      - node_modules:/usr/app/node_modules
+    command: yarn dev
+
+volumes:
+  node_modules:
