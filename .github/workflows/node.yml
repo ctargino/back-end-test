@@ -1,0 +1,41 @@
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+
+env:
+  NODE_VERSION: '14.x' # set this to the node version to use
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build-and-deploy:
+    name: Push and Pull Request action
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Check commit lint
+        uses: wagoid/commitlint-github-action@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: yarn
+        run: yarn
+
+      - name: Check Lint
+        run: yarn eslint
