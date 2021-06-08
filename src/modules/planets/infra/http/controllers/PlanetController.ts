@@ -4,7 +4,7 @@ import GetPlanetsService from '@modules/planets/services/planet/GetPlanetsServic
 import ListPlanetsService from '@modules/planets/services/planet/ListPlanetsService';
 import FindFilmNameByApiService from '@modules/planets/services/sw-api/FindFilmNameByApiService';
 import FindPlanetFilmsByAPIService from '@modules/planets/services/sw-api/FindPlanetFilmsByAPIService';
-import AppError from '@shared/errors/AppError';
+
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
