@@ -14,6 +14,12 @@ export default class PlanetController {
 
     const findPlanet = await FindPlanetFilmsByAPIService({ search: name });
 
+    if (findPlanet.results.length < 1) {
+      return response
+        .status(404)
+        .json({ message: 'This planet does not exist!' });
+    }
+
     const filmsLinks: string[] = [];
     findPlanet.results[0].films.map(film => filmsLinks.push(film));
 
