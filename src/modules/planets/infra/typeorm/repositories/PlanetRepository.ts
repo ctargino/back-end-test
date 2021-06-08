@@ -67,4 +67,8 @@ export default class PlanetRespository implements IPlanetRepository {
       message: `Planet ${planetExist.name} successfully deleted`,
     };
   }
+
+  public async findById(id: string): Promise<Planet | undefined> {
+    return this.ormRepository.findOne({ where: { _id: new ObjectId(id) } });
+  }
 }
