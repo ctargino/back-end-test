@@ -22,33 +22,33 @@ export default class PlanetRespository implements IPlanetRepository {
     return planet;
   }
 
-  public async all(param: IListPlanetDTO): Promise<Planet[]> {
-    const { climate, terrain, films, name, id } = param;
-    const params: Object = {};
+  public async all(params: IListPlanetDTO): Promise<Planet[]> {
+    const { climate, terrain, films, name, id } = params;
+    const param: Object = {};
 
     if (climate) {
       const climateSearch = { climate };
-      Object.assign(params, climateSearch);
+      Object.assign(param, climateSearch);
     }
     if (terrain) {
       const terrainSearch = { terrain };
-      Object.assign(params, terrainSearch);
+      Object.assign(param, terrainSearch);
     }
     if (name) {
       const nameSearch = { name };
-      Object.assign(params, nameSearch);
+      Object.assign(param, nameSearch);
     }
     if (films) {
       const filmsSearch = { films };
-      Object.assign(params, filmsSearch);
+      Object.assign(param, filmsSearch);
     }
     if (id) {
       const idSearch = { _id: new ObjectId(id) };
-      Object.assign(params, idSearch);
+      Object.assign(param, idSearch);
     }
 
     const planets = await this.ormRepository.find({
-      where: params,
+      where: param,
       order: { name: 'ASC' },
     });
 
