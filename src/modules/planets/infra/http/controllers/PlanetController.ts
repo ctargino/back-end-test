@@ -46,10 +46,6 @@ export default class PlanetController {
       return response.json(planets[0]);
     }
 
-    if (planets.length == 0) {
-      throw new AppError('No results was found');
-    }
-
     return response.json(planets);
   }
 
