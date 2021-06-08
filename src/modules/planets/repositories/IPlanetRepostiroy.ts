@@ -7,6 +7,6 @@ import {
 
 export default interface IPlanetRepository {
   create(data: ICreatePlanetDTO): Promise<Planet>;
-  all(params: IListPlanetDTO): Promise<Planet[]>;
+  all(param: IListPlanetDTO): Promise<Planet[]>;
   delete(id: string): Promise<IDeletePlanetResponseDTO>;
 }
