@@ -1,5 +1,6 @@
 import CreatePlanetService from '@modules/planets/services/planet/CreatePlanetService';
 import DeletePlanetService from '@modules/planets/services/planet/DeletePlanetService';
+import GetPlanetsService from '@modules/planets/services/planet/GetPlanetsService';
 import ListPlanetsService from '@modules/planets/services/planet/ListPlanetsService';
 import FindFilmNameByApiService from '@modules/planets/services/sw-api/FindFilmNameByApiService';
 import FindPlanetFilmsByAPIService from '@modules/planets/services/sw-api/FindPlanetFilmsByAPIService';
@@ -54,6 +55,15 @@ export default class PlanetController {
 
     const deletePlanet = container.resolve(DeletePlanetService);
     const planet = await deletePlanet.execute(id);
+
+    return response.json(planet);
+  }
+
+  public async get(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const getPlanet = container.resolve(GetPlanetsService);
+    const planet = await getPlanet.execute(id);
 
     return response.json(planet);
   }
