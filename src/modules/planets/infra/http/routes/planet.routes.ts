@@ -41,4 +41,14 @@ planetRouter.delete(
   planetController.delete,
 );
 
+planetRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  planetController.get,
+);
+
 export default planetRouter;
