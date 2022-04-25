@@ -1,4 +1,4 @@
-# Teste Back-end B2W!
+# Teste Back-end!
 
 > Olá! Me chamo Caio Targino e estou enviando este projeto para avaliação para vaga **Back-end Node**.
 
